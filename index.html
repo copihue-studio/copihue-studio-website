@@ -54,7 +54,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 60px;
+            margin-bottom: 20px;
             animation: fadeInUp 1s ease-out 0.1s both;
         }
         
@@ -65,12 +65,51 @@
             line-height: 1;
         }
         
+        .studio-line {
+            position: relative;
+            display: inline-block;
+            margin-top: 8px;
+        }
+        
+        .info-btn {
+            position: absolute;
+            right: -36px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
         .company-name-sub {
             font-size: 1.8rem;
             font-weight: 400;
             letter-spacing: 0.15em;
-            margin-top: 8px;
             opacity: 0.9;
+        }
+        
+        .info-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.6);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+        
+        .info-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .info-btn.active {
+            background: rgba(239, 68, 108, 0.2);
+            border-color: rgba(239, 68, 108, 0.4);
+            color: #ef446c;
         }
         
         .tagline {
@@ -86,7 +125,7 @@
         .about {
             max-width: 700px;
             text-align: center;
-            margin: 40px 0;
+            margin: 20px 0;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
         
@@ -143,51 +182,24 @@
             box-shadow: 0 6px 30px rgba(239, 68, 108, 0.4);
         }
         
-        .about-toggle {
-            margin-bottom: 40px;
-        }
-        
-        .toggle-btn {
-            background: none;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 0 auto;
-            transition: all 0.3s ease;
-        }
-        
-        .toggle-btn:hover {
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .toggle-icon {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .toggle-btn.active .toggle-icon {
-            transform: rotate(45deg);
-        }
-        
         #about-copihue {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease, opacity 0.3s ease;
+            transition: max-height 0.5s ease, opacity 0.3s ease, margin-top 0.3s ease;
             opacity: 0;
-            margin-top: 20px;
+            margin-top: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         #about-copihue.active {
             max-height: 200px;
-            opacity: 1;
+            opacity: 0.8;
+            margin-top: 30px;
         }
         
         .neat-link {
@@ -228,6 +240,18 @@
                 font-size: 1.4rem;
             }
             
+            .info-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+                right: -30px;
+            }
+            
+            #about-copihue {
+                font-size: 0.9rem;
+                max-width: 400px;
+            }
+            
             .tagline {
                 font-size: 1.4rem;
             }
@@ -249,22 +273,21 @@
         
         <div class="company-name">
             <span class="company-name-main">COPIHUE</span>
-            <span class="company-name-sub">STUDIO</span>
+            <div class="studio-line">
+                <span class="company-name-sub">STUDIO</span>
+                <button class="info-btn" onclick="toggleAbout()" title="About the Copihue">
+                    <span class="info-icon">ⓘ</span>
+                </button>
+            </div>
+            <p class="about-copihue" id="about-copihue">
+                The copihue is Chile's national flower—a resilient vine that climbs through native forests, 
+                reaching for light. For Chileans, it symbolizes beauty emerging from adversity, 
+                a reminder that the most stunning creations often grow in unexpected places.
+            </p>
         </div>
         
         
         <div class="about">
-            <div class="about-toggle">
-                <button class="toggle-btn" onclick="toggleAbout()">
-                    <span class="toggle-text">About the Copihue</span>
-                    <span class="toggle-icon">+</span>
-                </button>
-                <p class="about-copihue" id="about-copihue">
-                    The copihue is Chile's national flower—a resilient vine that climbs through native forests, 
-                    reaching for light. For Chileans, it symbolizes beauty emerging from adversity, 
-                    a reminder that the most stunning creations often grow in unexpected places.
-                </p>
-            </div>
             
             <div class="current-project">
                 <h2>Currently Building</h2>
@@ -284,10 +307,10 @@
     <script>
         function toggleAbout() {
             const aboutText = document.getElementById('about-copihue');
-            const toggleBtn = document.querySelector('.toggle-btn');
+            const infoBtn = document.querySelector('.info-btn');
             
             aboutText.classList.toggle('active');
-            toggleBtn.classList.toggle('active');
+            infoBtn.classList.toggle('active');
         }
     </script>
 </body>
