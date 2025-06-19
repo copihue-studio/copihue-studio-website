@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copihue Studio - Digital Experiences That Bloom</title>
+    <title>Copihue Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -44,9 +44,9 @@
         }
         
         .logo {
-            max-width: 120px;
+            max-width: 140px;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             animation: fadeInUp 1s ease-out;
         }
         
@@ -54,22 +54,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             animation: fadeInUp 1s ease-out 0.1s both;
         }
         
         .company-name-main {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 600;
             letter-spacing: 0.05em;
             line-height: 1;
         }
         
         .company-name-sub {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 400;
             letter-spacing: 0.15em;
-            margin-top: 5px;
+            margin-top: 8px;
             opacity: 0.9;
         }
         
@@ -143,6 +143,67 @@
             box-shadow: 0 6px 30px rgba(239, 68, 108, 0.4);
         }
         
+        .about-toggle {
+            margin-bottom: 40px;
+        }
+        
+        .toggle-btn {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .toggle-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .toggle-btn.active .toggle-icon {
+            transform: rotate(45deg);
+        }
+        
+        #about-copihue {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
+            margin-top: 20px;
+        }
+        
+        #about-copihue.active {
+            max-height: 200px;
+            opacity: 1;
+        }
+        
+        .neat-link {
+            display: inline-block;
+            color: #ef446c;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .neat-link:hover {
+            color: #f06292;
+            transform: translateX(5px);
+        }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -156,15 +217,15 @@
         
         @media (max-width: 600px) {
             .logo {
-                max-width: 100px;
+                max-width: 110px;
             }
             
             .company-name-main {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .company-name-sub {
-                font-size: 1.2rem;
+                font-size: 1.4rem;
             }
             
             .tagline {
@@ -191,21 +252,28 @@
             <span class="company-name-sub">STUDIO</span>
         </div>
         
-        <p class="tagline">Digital experiences that bloom</p>
         
         <div class="about">
-            <p class="about-copihue">
-                The copihue is Chile's national flower—a resilient vine that climbs through native forests, 
-                reaching for light. For Chileans, it symbolizes beauty emerging from adversity, 
-                a reminder that the most stunning creations often grow in unexpected places.
-            </p>
+            <div class="about-toggle">
+                <button class="toggle-btn" onclick="toggleAbout()">
+                    <span class="toggle-text">About the Copihue</span>
+                    <span class="toggle-icon">+</span>
+                </button>
+                <p class="about-copihue" id="about-copihue">
+                    The copihue is Chile's national flower—a resilient vine that climbs through native forests, 
+                    reaching for light. For Chileans, it symbolizes beauty emerging from adversity, 
+                    a reminder that the most stunning creations often grow in unexpected places.
+                </p>
+            </div>
             
             <div class="current-project">
                 <h2>Currently Building</h2>
                 <p>
-                    <strong>NeatApp</strong> — A gamified photography learning app that helps people 
-                    capture the beauty of the world around them, one frame at a time.
+                    <strong>Neat Photo</strong> — A gamified photography learning app that transforms your 
+                    smartphone into a skill-building platform. With AI-powered coaching, daily themed competitions, 
+                    and a deep progression system, we make improving your photography as engaging as playing a game.
                 </p>
+                <a href="https://neat.photo" target="_blank" class="neat-link">Visit neat.photo →</a>
             </div>
         </div>
         
@@ -213,5 +281,14 @@
             <a href="mailto:hello@copihue.io" class="cta-button">Get in Touch</a>
         </div>
     </div>
+    <script>
+        function toggleAbout() {
+            const aboutText = document.getElementById('about-copihue');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            
+            aboutText.classList.toggle('active');
+            toggleBtn.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
